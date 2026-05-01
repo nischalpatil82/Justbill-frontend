@@ -1,0 +1,103 @@
+<div class="dashboard-sidebar" [class.open]="accountService.isOpenMenu">
+
+  <!-- Close Button -->
+  <button class="btn back-btn" (click)="closeMenu()">
+    <i class="ri-close-line"></i>
+    <span>{{ 'close' | translate }}</span>
+  </button>
+
+  <!-- Profile Section -->
+  <div class="profile-top">
+    <div class="profile-top-box">
+      <div class="profile-image">
+        <div class="position-relative h-100">
+
+          @if((user$ | async)?.profile_image && (user$ | async)?.profile_image?.original_url){
+            <img
+              [src]="(user$ | async)?.profile_image?.original_url"
+              class="update_img"
+              alt="profile"
+            />
+          } @else {
+            <div class="user-round">
+              <h4>{{ (user$ | async)?.name?.charAt(0)?.toUpperCase() }}</h4>
+            </div>
+          }
+
+          <div class="user-icon">
+            <input type="file" (change)="uploadImage($event)" accept="image/*" />
+            <i class="ri-image-edit-line d-lg-block d-none"></i>
+            <i class="ri-pencil-fill edit-icon d-lg-none"></i>
+          </div>
+        </div>
+      </div>
+
+      @if((user$ | async)?.profile_image?.original_url){
+      <div class="user-icon-2" (click)="uploadImage('remove')">
+        <i class="ri-close-line"></i>
+      </div>
+      }
+    </div>
+
+    <div class="profile-detail">
+      <h5>{{ (user$ | async)?.name | titlecase }}</h5>
+      <h6>{{ (user$ | async)?.email }}</h6>
+    </div>
+  </div>
+
+  <!-- Sidebar Menu -->
+  <div class="faq-tab">
+    <ul class="nav nav-tabs" role="tablist">
+
+      <!-- Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/account/dashboard" routerLinkActive="active">
+          <i class="ri-home-line"></i> Dashboard
+        </a>
+      </li>
+
+      <!-- Orders -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/account/order" routerLinkActive="active">
+          <i class="ri-file-text-line"></i> Orders
+        </a>
+      </li>
+
+      <!-- Wallet -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/account/wallet" routerLinkActive="active">
+          <i class="ri-wallet-line"></i> Wallet
+        </a>
+      </li>
+
+      <!-- Points -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/account/point" routerLinkActive="active">
+          <i class="ri-coin-line"></i> Points
+        </a>
+      </li>
+
+      <!-- Address -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/account/addresses" routerLinkActive="active">
+          <i class="ri-map-pin-line"></i> Address
+        </a>
+      </li>
+
+      <!-- Profile -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/account/profile" routerLinkActive="active">
+          <i class="ri-user-line"></i> Profile
+        </a>
+      </li>
+
+      <!-- Logout -->
+      <li class="nav-item logout-cls">
+        <a href="javascript:void(0)" class="btn loagout-btn" (click)="logout()">
+          <i class="ri-logout-box-r-line"></i> Logout
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,163 @@
+/* ===== DESKTOP CART TABLE ===== */
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-table th {
+  text-align: center;
+  font-weight: 600;
+  padding: 15px;
+  background: #f5f5f5;
+}
+
+.cart-table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 15px;
+}
+
+/* product image */
+.cart-table img {
+  width: 80px;
+  height: auto;
+  border-radius: 6px;
+}
+
+/* product name */
+.cart-table td a {
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+}
+
+/* price & total */
+.cart-table h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0f766e;
+  margin: 0;
+}
+
+/* quantity box center */
+.qty-box {
+  display: flex;
+  justify-content: center;
+}
+
+/* delete icon */
+.cart-table .ri-close-line {
+  cursor: pointer;
+  font-size: 18px;
+  color: #999;
+}
+
+.cart-table .ri-close-line:hover {
+  color: red;
+}
+
+/* ===== TOTAL ROW ===== */
+
+.cart-table tfoot td {
+  font-weight: 600;
+  font-size: 16px;
+  padding: 15px;
+}
+
+/* align total price right */
+.cart-table tfoot td:last-child {
+  text-align: right;
+  color: #000;
+}
+
+/* ===== BUTTON SECTION ===== */
+
+.cart-buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* buttons */
+.cart-buttons .btn {
+  background: #0f766e;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.cart-buttons .btn:hover {
+  background: #0d5f59;
+}
+
+/* align buttons */
+.cart-buttons .col-6:first-child {
+  text-align: left;
+}
+
+.cart-buttons .col-6:last-child {
+  text-align: right;
+}
+
+/* ===== MOBILE FINAL FIX ===== */
+
+@media (max-width: 767px) {
+
+  /* allow scroll */
+  body, html,
+  .container,
+  .cart-section,
+  .row,
+  .col-sm-12 {
+    overflow-x: visible !important;
+  }
+
+  /* scroll wrapper */
+  .cart-table-wrapper {
+    width: 100%;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* table width */
+  .cart-table {
+    min-width: 900px;
+    display: table;
+  }
+
+  /* prevent breaking */
+  .cart-table th,
+  .cart-table td {
+    white-space: nowrap;
+    display: table-cell;
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  /* FIX: show header */
+  .cart-table thead {
+    display: table-header-group !important;
+  }
+
+  .cart-table thead tr {
+    display: table-row !important;
+  }
+
+  .cart-table thead th {
+    display: table-cell !important;
+  }
+
+  /* image smaller */
+  .cart-table img {
+    width: 60px;
+  }
+
+  /* qty compact */
+  .qty-box .input-group {
+    transform: scale(0.9);
+  }
+}

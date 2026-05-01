@@ -1,0 +1,78 @@
+<header class="style-light header-compact" [class]="!(stick && sticky()) ? class()! : ''"
+  [ngClass]="stick && sticky() ? 'sticky fixed' : ''">
+
+  @if(data()?.header?.page_top_bar_enable){
+    <app-top-bar [data]="data()" />
+  }
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="main-menu">
+
+          <div class="menu-left">
+            <div class="toggle-nav" (click)="mainMenuOpen()">
+              <i class="ri-menu-line sidebar-bar"></i>
+            </div>
+
+            <div class="brand-logo">
+              <app-header-logo [logo]="logo()" />
+            </div>
+          </div>
+
+          <div>
+            <app-search [style]="'simple'" />
+          </div>
+
+          <div class="menu-right pull-right">
+            <div>
+              <div class="icon-nav">
+                <ul>
+
+                  <!-- Wishlist -->
+                  <li class="onhover-div">
+                    <a [routerLink]="['/wishlist']">
+                      <i class="ri-heart-line"></i>
+                    </a>
+                  </li>
+
+                  <!-- Cart -->
+                  <li class="onhover-div">
+                    <app-cart />
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-part bottom-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 menu-row">
+
+          <!-- ✅ ALWAYS SHOW MENU -->
+          <div class="main-menu-right">
+            <app-menu></app-menu>
+          </div>
+
+          <div class="delivery-area d-xl-flex d-none ms-auto me-0">
+            <div>
+              <h5>
+                {{ 'call_us' | translate }}:
+                {{ data()?.header?.support_number }}
+              </h5>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>

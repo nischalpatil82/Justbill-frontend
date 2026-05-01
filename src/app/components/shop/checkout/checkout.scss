@@ -1,0 +1,267 @@
+/* --- 1. GLOBAL TEXT & COLOR (Removing Black) --- */
+:root {
+  --theme-green: #206664;
+  --text-body: #4a5c5a; /* Deep charcoal-green instead of black */
+  --border-light: #edf2f0;
+}
+
+/* --- 2. THE MAIN CHECKOUT BOXES --- */
+.checkout-box {
+  border: 1px solid #e2e8e5; 
+  border-radius: 12px;
+  padding: 24px;
+  background: #ffffff;
+  margin-bottom: 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.checkout-title h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--theme-green);
+  margin: 0;
+}
+
+/* --- 3. THE UNIFIED CARD SYSTEM --- */
+/* This targets Address Cards, Delivery Cards, and Payment Cards identically */
+.checkout-detail > div, 
+.delivery-option, 
+.payment-option,
+app-address-block .address-box {
+  position: relative;
+  padding: 20px;
+  background: #fff;
+  border: 1.5px solid var(--border-light);
+  border-radius: 10px;
+  display: flex;
+  gap: 16px;
+  cursor: pointer;
+  overflow: hidden;
+  margin-bottom: 12px;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* THE PRO HOVER (Same for all 3 sections) */
+.checkout-detail > div:hover, 
+.delivery-option:hover, 
+.payment-option:hover,
+app-address-block .address-box:hover {
+  border-color: var(--theme-green);
+  background: #f9fbfb;
+  box-shadow: 0 10px 25px rgba(32, 102, 100, 0.08); 
+  transform: translateY(-2px);
+}
+
+/* SIDE-ACCENT LINE (Same for all 3 sections) */
+.checkout-detail > div::before, 
+.delivery-option::before, 
+.payment-option::before,
+app-address-block .address-box::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: var(--theme-green);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.checkout-detail > div:hover::before, 
+.delivery-option:hover::before, 
+.payment-option:hover::before,
+app-address-block .address-box:hover::before {
+  transform: scaleY(1);
+}
+
+/* --- 4. RADIO BUTTONS --- */
+.radio-input, .form-check-input {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ceded8;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+  transition: all 0.3s ease;
+}
+
+/* Active State for all sections */
+.active .radio-input, 
+.active-card .radio-input,
+.form-check-input:checked {
+  background: var(--theme-green) !important;
+  border-color: var(--theme-green) !important;
+}
+
+/* --- 5. TYPOGRAPHY (API Data Highlighting) --- */
+.address-text-block p, .delivery-option p, .payment-option p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-body);
+  white-space: pre-line;
+}
+
+/* First line highlight (Title/Method/Building) */
+.address-text-block p::first-line,
+.delivery-option .method-title,
+.payment-option .payment-title {
+  font-weight: 700;
+  color: var(--theme-green);
+  font-size: 15.5px;
+}
+
+/* Pin code / Delivery Tag */
+.pin-row, .delivery-tag {
+  margin-top: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--theme-green);
+  background: #e9f0ee;
+  padding: 4px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  letter-spacing: 0.5px;
+}
+
+
+/* ===== PREMIUM GIFT OPTION STYLE ===== */
+
+:root {
+  --theme-green: #206664;
+  --theme-light-green: #f2f8f7;
+  --border-color: #e2e8f0;
+  --text-main: #2d3748;
+  --text-muted: #718096;
+}
+
+.gift-option {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  background: #ffffff;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover & Active States */
+.gift-option:hover {
+  border-color: var(--theme-green);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.gift-option.active {
+  border-color: var(--theme-green);
+  background: var(--theme-light-green);
+  box-shadow: inset 0 0 0 1px var(--theme-green);
+}
+
+/* Header Layout */
+.gift-option-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.radio-wrapper {
+  display: flex;
+  align-items: center;
+  margin-right: 12px;
+}
+
+/* Custom Radio Styling */
+.gift-radio {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #cbd5e0;
+  border-radius: 50%;
+  background: #fff;
+  margin: 0;
+  display: grid;
+  place-content: center;
+  transition: all 0.2s ease;
+}
+
+.gift-radio::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 0.2s transform ease-in-out;
+  background-color: #fff;
+}
+
+.gift-radio:checked {
+  border-color: var(--theme-green);
+  background-color: var(--theme-green);
+}
+
+.gift-radio:checked::before {
+  transform: scale(1);
+}
+
+/* Typography */
+.gift-label {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-main);
+  letter-spacing: -0.2px;
+}
+
+.gift-price {
+  margin-left: auto;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--theme-green);
+  background: rgba(32, 102, 100, 0.1);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+/* Message Area */
+.gift-message {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed #cbd5e0;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.gift-message label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.gift-message textarea {
+  width: 100%;
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+  background: #fff;
+  transition: border-color 0.2s;
+}
+
+.gift-message textarea:focus {
+  border-color: var(--theme-green);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(32, 102, 100, 0.08);
+}

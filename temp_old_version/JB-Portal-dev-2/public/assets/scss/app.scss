@@ -1,0 +1,11 @@
+@use "bootstrap/scss/bootstrap" as *;
+
+/* Owl */
+@import "ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
+@import "ngx-owl-carousel-o/lib/styles/scss/owl.theme.default";
+
+/* Swiper */
+@import "swiper/swiper.scss";
+
+/* Theme */
+@import "../../assets/scss/style.scss";

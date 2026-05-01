@@ -1,0 +1,31 @@
+# --- Standard Angular & Node Exclusions ---
+node_modules/
+dist/
+build/
+.angular/
+/out-tsc/
+/coverage/
+
+# --- Logs ---
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# --- IDE & Editor Settings (Good to ignore) ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- Operating System System Files ---
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# --- Security (Never push these) ---
+.env
+node_modules/
+dist/
+.angular/
+

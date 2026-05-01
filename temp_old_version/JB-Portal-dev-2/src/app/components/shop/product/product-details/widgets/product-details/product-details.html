@@ -1,0 +1,61 @@
+@if(product){
+
+@if(option()?.product?.encourage_view && product.encourage_view){
+<div class="trending-text">
+  <img src="assets/images/trending.gif" class="img-fluid" alt="" />
+  <h5>
+    {{ 'selling_fast' | translate }}!
+    {{ viewsCount }} {{ 'people_in_this_cart' | translate }}
+  </h5>
+</div>
+}
+
+<!-- Product name -->
+<a [routerLink]="['/shop/product', product.slug]">
+  <h2 class="main-title">
+    {{ selectedVariation ? selectedVariation.name : product.name }}
+  </h2>
+</a>
+
+<!-- Review -->
+@if(!product.is_external){
+<div class="product-rating">
+  <ngb-rating [rate]="product.rating_count || (3 + (product.id % 3))"></ngb-rating>
+  <span class="divider">|</span>
+  <span>{{ product.reviews_count }} {{ 'review' | translate }}</span>
+</div>
+}
+
+<!-- Price -->
+<div class="price-text">
+  <h3>
+    <span>{{ 'mrp' | translate }}:</span>
+    {{ product.sale_price | currencySymbol }}
+    @if(product.discount){
+      <del>{{ product.price | currencySymbol }}</del>
+      <span class="discounted-price">{{ product.discount }}% off</span>
+    }
+  </h3>
+</div>
+
+<!-- Description -->
+@if(product.short_description){
+<p class="description-text">{{ product.short_description }}</p>
+}
+
+<!-- Actions -->
+@if(product.is_return){
+<div class="size-delivery-info">
+  <a (click)="openModal('delivery', policy)">
+    <i class="ri-truck-line"></i> {{ 'delivery_return' | translate }}
+  </a>
+
+  <span></span>
+
+  <a (click)="openModal('question', product)">
+    <i class="ri-questionnaire-line"></i> {{ 'ask_a_question' | translate }}
+  </a>
+</div>
+}
+
+}

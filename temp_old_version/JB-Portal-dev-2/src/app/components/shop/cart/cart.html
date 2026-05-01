@@ -1,0 +1,162 @@
+<app-breadcrumb [breadcrumb]="breadcrumb" />
+
+<section class="cart-section section-b-space">
+  <div class="container">
+
+    @if((cartItem$ | async)?.length){
+
+    <div class="row">
+    <div class="col-sm-12">
+  <div class="cart-table-wrapper">
+        <table class="table cart-table">
+
+          <thead>
+            <tr class="table-head">
+              <th>{{ 'image' | translate }}</th>
+              <th>{{ 'product_name' | translate }}</th>
+              <th>{{ 'price' | translate }}</th>
+              <th>{{ 'quantity' | translate }}</th>
+              <th>{{ 'total' | translate }}</th>
+              <th>{{ 'action' | translate }}</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for(item of cartItem$ | async; track item.id){
+            <tr>
+
+              <!-- IMAGE -->
+              <td>
+                <a [routerLink]="['/product/', item?.product?.slug]">
+                  <img
+                    [src]="item?.variation?.variation_image?.original_url 
+                      || item?.product?.product_thumbnail?.original_url 
+                      || 'assets/images/placeholder/product.png'"
+                    class="img-fluid"
+                  />
+                </a>
+              </td>
+
+              <!-- NAME -->
+              <td>
+                <a [routerLink]="['/product/', item.product.slug]">
+                  {{ item?.variation ? item.variation.name : item?.product?.name }}
+                </a>
+              </td>
+
+              <!-- PRICE -->
+              <td>
+                <h2>
+              {{ (item?.variation?.sale_price ?? item?.product?.sale_price ?? 0) | currencySymbol }}
+                </h2>
+              </td>
+
+              <!-- QUANTITY -->
+  <td>
+  <div class="qty-box">
+    <div class="input-group justify-content-center">
+
+      <!-- MINUS -->
+      <span class="input-group-prepend">
+        <app-button
+          [id]="'quantity-left-minus'"
+          [class]="'btn quantity-left-minus'"
+          [iconClass]="'ri-arrow-left-s-line'"
+          [spinner]="false"
+          (click)="updateQuantity(item,-1)"
+        />
+      </span>
+
+      <!-- INPUT -->
+      <input
+        type="text"
+        name="quantity"
+        class="form-control input-number text-center"
+        [value]="item.quantity"
+        readonly
+      />
+
+      <!-- PLUS -->
+      <span class="input-group-prepend">
+        <app-button
+          [id]="'quantity-left-plus'"
+          [class]="'btn quantity-left-plus'"
+          [iconClass]="'ri-arrow-right-s-line'"
+          [spinner]="false"
+          (click)="updateQuantity(item,1)"
+        />
+      </span>
+
+    </div>
+  </div>
+</td>
+
+              <!-- TOTAL -->
+              <td>
+                <h2>
+                 {{ (((item?.variation?.sale_price ?? item?.product?.sale_price ?? 0) * (item.quantity ?? 0))) | currencySymbol }}
+                </h2>
+              </td>
+
+              <!-- DELETE -->
+              <td>
+                <a (click)="delete(item.id)">
+                  <i class="ri-close-line"></i>
+                </a>
+              </td>
+
+            </tr>
+            }
+          </tbody>
+
+          <!-- TOTAL -->
+          <tfoot>
+            <tr>
+              <td colspan="4">{{ 'total_price' | translate }}</td>
+              <td>
+                <h2>{{ (cartTotal$ | async) | currencySymbol }}</h2>
+              </td>
+            </tr>
+          </tfoot>
+
+      </table>
+      </div> <!-- cart-table-wrapper -->
+    </div> <!-- col-sm-12 -->
+</div> <!-- row -->
+
+    <!-- BUTTONS -->
+    <div class="row cart-buttons">
+      <div class="col-6">
+        <a class="btn" [routerLink]="['/collections/']">
+          {{ 'continue_shopping' | translate }}
+        </a>
+      </div>
+      <div class="col-6">
+        <a class="btn" [routerLink]="['/checkout/']">
+          {{ 'check_out' | translate }}
+        </a>
+      </div>
+    </div>
+
+    } @else {
+
+    <!-- EMPTY CART -->
+    <app-no-data
+      [class]="'no-data-added'"
+      [image]="'assets/svg/empty-items.svg'"
+      [text]="'no_item'"
+      [description]="'no_cart_item_desc'"
+    />
+
+    <!-- SHOW 0 TOTAL -->
+    <div class="text-center mt-3">
+      <h4>
+        Total: {{ (cartTotal$ | async) | currencySymbol }}
+      </h4>
+    </div>
+
+    }
+
+  </div>
+  
+</section>

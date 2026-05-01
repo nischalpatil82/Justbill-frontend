@@ -1,0 +1,109 @@
+<div class="counter-section">
+  <!-- Workspace Title -->
+  <div class="welcome-msg">
+    <h3>MyWorkspace</h3>
+    <h4>
+      {{ 'hello' | translate }}, {{ (user$ | async)?.name | titlecase }} !
+    </h4>
+    <p>{{ 'welcome_text' | translate }}</p>
+  </div>
+
+  <!-- Dashboard Counters -->
+  <div class="row mt-3">
+    <div class="col-md-4">
+      <div class="counter-box">
+        <img
+          src="assets/images/icon/dashboard/account1.png"
+          class="img-fluid"
+          alt="wallet"
+        />
+        <div>
+          <h3>
+            {{ ((user$ | async)?.wallet ? (user$ | async)?.wallet?.balance : 0)
+            | currencySymbol }}
+          </h3>
+          <h5>Wallet</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="counter-box">
+        <img
+          src="assets/images/icon/dashboard/account2.png"
+          class="img-fluid"
+          alt="points"
+        />
+        <div>
+          <h3>{{ (user$ | async)?.point?.balance ?? 0 }}</h3>
+          <h5>Points</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="counter-box">
+        <img
+          src="assets/images/icon/dashboard/account3.png"
+          class="img-fluid"
+          alt="orders"
+        />
+        <div>
+          <h3>{{ (user$ | async)?.orders_count ?? 0 }}</h3>
+          <h5>Orders</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard Section -->
+  <div class="box-account box-info mt-4">
+    <div class="box-head">
+      <h4>Dashboard</h4>
+    </div>
+
+    <!-- Profile Info -->
+    <div class="row">
+      <div class="col-12">
+        <div class="box">
+          <ul class="box-content">
+            <li>
+              <h6>Profile: {{ (user$ | async)?.name | titlecase }}</h6>
+            </li>
+
+            <!-- Address -->
+            <li>
+              <h6>
+                Address: @if (address) { {{ address.street }}, {{ address.city
+                }}, {{ address.pincode }} } @else { No address added }
+              </h6>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Login Details -->
+    <!-- <div class="box mt-3">
+    <div class="box-head">
+      <h4>Profile</h4>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <h6>Email : {{ (user$ | async)?.email }}</h6>
+        <a href="javascript:void(0)" (click)="openModal('profile')">
+          Edit Profile
+        </a>
+      </div>
+
+      <div class="col-sm-6">
+        <h6>Password : ●●●●●●</h6>
+        <a href="javascript:void(0)" (click)="openModal('password')">
+          Change Password
+        </a>
+      </div>
+    </div>
+  </div> -->
+  </div>
+</div>

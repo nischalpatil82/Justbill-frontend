@@ -1,0 +1,15 @@
+import { CommonModule } from '@angular/common';
+import { Component, input } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
+import { ICategory } from '../../../../shared/interface/category.interface';
+
+@Component({
+  selector: 'app-blog-category',
+  imports: [CommonModule, RouterModule],
+  templateUrl: './blog-category.html',
+  styleUrl: './blog-category.scss',
+})
+export class BlogCategory {
+  readonly data = input<ICategory[]>();
+}

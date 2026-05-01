@@ -1,0 +1,80 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="pro-form-teal">
+  
+  <div class="modal-header">
+    <h3>Add Address</h3>
+    <button type="button" class="btn-close-simple" (click)="modal.close('Close')">
+      &times;
+    </button>
+  </div>
+
+  <div class="modal-body">
+    
+    <div class="form-section">
+      <label class="section-title">Address Type</label>
+      <div class="tile-group">
+        
+        <label class="tile-option">
+          <input type="radio" value="Shipping" formControlName="title">
+          <span class="tile-content">Shipping</span>
+        </label>
+
+        <label class="tile-option">
+          <input type="radio" value="Billing" formControlName="title">
+          <span class="tile-content">Billing</span>
+        </label>
+
+      </div>
+    </div>
+
+    <div class="form-group full-width">
+      <label class="input-label">Street Address</label>
+      <input 
+        type="text" 
+        class="form-control-pro" 
+        placeholder="House No, Building, Street Area" 
+        formControlName="street"
+      >
+    </div>
+
+    <div class="row g-3">
+      <div class="col-6">
+        <div class="form-group">
+          <label class="input-label">City</label>
+          <input type="text" class="form-control-pro" formControlName="city">
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label class="input-label">State</label>
+          <input type="text" class="form-control-pro" formControlName="state">
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-3 mt-1">
+      <div class="col-6">
+        <div class="form-group">
+          <label class="input-label">Pincode</label>
+          <input type="text" class="form-control-pro" formControlName="pincode">
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label class="input-label">Country</label>
+          <input type="text" class="form-control-pro" formControlName="country">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn-cancel" (click)="modal.close('Cancel')">
+      Cancel
+    </button>
+    <button type="submit" class="btn-save">
+      Save Address
+    </button>
+  </div>
+
+</form>

@@ -1,0 +1,135 @@
+<!-- ✅ LUXURY EDITORIAL REGISTER -->
+<section class="auth-page luxury-editorial-layout">
+  <div class="outer-card-border">
+    <div class="luxury-split-card">
+      
+      <!-- FORM SECTION (Left) -->
+      <div class="form-section">
+        <div class="inner-form-panel">
+          <div class="header-content text-center mb-4">
+            <h1 class="editorial-title">{{ 'CREATE ACCOUNT' | translate }}</h1>
+            <p class="editorial-subtext">{{ 'Join our exclusive jewellery community' | translate }}</p>
+          </div>
+
+          <app-alert />
+
+          <form
+            class="auth-form-box"
+            [formGroup]="form"
+            (ngSubmit)="submit()"
+          >
+            <div class="row g-4">
+              <!-- NAME -->
+              <div class="col-md-6">
+                <div class="luxury-field-group">
+                  <label class="luxury-label">{{ 'name' | translate }}</label>
+                  <input type="text" class="luxury-input" formControlName="name" />
+                </div>
+              </div>
+
+              <!-- EMAIL -->
+              <div class="col-md-6">
+                <div class="luxury-field-group">
+                  <label class="luxury-label">{{ 'email' | translate }}</label>
+                  <input type="text" class="luxury-input" formControlName="email" />
+                </div>
+              </div>
+
+              <!-- PHONE -->
+              <div class="col-12">
+                <div class="luxury-field-group">
+                  <label class="luxury-label">{{ 'phone_number' | translate }}</label>
+                  <div class="phone-input-wrapper">
+                    <span class="country-prefix">+91</span>
+                    <input type="number" class="luxury-input" formControlName="phone" />
+                  </div>
+                  @if(form.controls['phone'].touched && form.controls['phone'].errors?.['required']){
+                    <span class="luxury-form-error">{{ 'phone_number_is_required' | translate }}</span>
+                  }
+                </div>
+              </div>
+
+              <!-- PASSWORD -->
+              <div class="col-md-6">
+                <div class="luxury-field-group">
+                  <label class="luxury-label">{{ 'password' | translate }}</label>
+                  <div class="relative-wrapper">
+                    <input 
+                      [type]="showPassword ? 'text' : 'password'" 
+                      class="luxury-input" 
+                      formControlName="password" 
+                    />
+                    <button type="button" class="eye-toggle" (click)="togglePasswordVisibility('password')">
+                      <i [class]="showPassword ? 'ri-eye-line' : 'ri-eye-off-line'"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CONFIRM PASSWORD -->
+              <div class="col-md-6">
+                <div class="luxury-field-group">
+                  <label class="luxury-label">{{ 'confirm_password' | translate }}</label>
+                  <div class="relative-wrapper">
+                    <input 
+                      [type]="showConfirmPassword ? 'text' : 'password'" 
+                      class="luxury-input" 
+                      formControlName="password_confirmation" 
+                    />
+                    <button type="button" class="eye-toggle" (click)="togglePasswordVisibility('confirm')">
+                      <i [class]="showConfirmPassword ? 'ri-eye-line' : 'ri-eye-off-line'"></i>
+                    </button>
+                  </div>
+                  @if (passwordMatchError) {
+                    <span class="luxury-form-error">{{ 'passwords_do_not_match' | translate }}</span>
+                  }
+                </div>
+              </div>
+            </div>
+
+            <!-- TERMS -->
+            <div class="luxury-options mt-4 mb-5">
+              <div class="luxury-checkbox">
+                <input class="form-check-input" type="checkbox" id="tnc" [formControl]="tnc" />
+                <label class="form-check-label" for="tnc">
+                  {{ 'i_agree_with' | translate }}
+                  <span class="editorial-link-alt">{{ 'terms' | translate }}</span>
+                  {{ 'and' | translate }}
+                  <span class="editorial-link-alt">{{ 'privacy' | translate }}</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- SUBMIT -->
+            <app-button
+              [class]="'btn luxury-cta-btn w-100'"
+              [disabled]="tnc.invalid || form.invalid"
+              [spinner]="true"
+            >
+              {{ 'CREATE ACCOUNT' | translate }}
+            </app-button>
+          </form>
+
+          <p class="editorial-register text-center mt-5">
+            {{ 'have_account' | translate }}?
+            <a (click)="goToLogin()" class="register-link-action">
+              {{ 'login_here' | translate }}
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <!-- IMAGE SECTION (Right) -->
+      <div class="image-section d-none d-lg-block">
+        <div class="editorial-image-wrapper">
+          <img src="assets/images/luxury-jewelry-login.png" alt="Luxury Jewellery" class="editorial-hero-img">
+          <div class="image-overlay-branding">
+            <span class="overlay-brand-name">VELORIA</span>
+            <p class="overlay-quote">“Where elegance meets identity”</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

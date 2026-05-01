@@ -1,0 +1,438 @@
+{
+    "id": 1,
+    "options": {
+        "seo": {
+            "og_title": "",
+            "meta_title": "AURA | Smart eCommerce",
+            "meta_tags": "",
+            "og_image_id": 107,
+            "og_description": "",
+            "meta_description": "",
+            "og_image": {
+                "id": 107,
+                "name": "fashion_two_1",
+                "file_name": "fashion_two_1.png",
+                "mime_type": "image/png",
+                "disk": "public",
+                "created_by_id": "1",
+                "created_at": "2025-05-06T03:56:14.000000Z",
+                "asset_url": "/storage/107/fashion_two_1.png",
+                "original_url": "/images/placeholder/fashion_two_1.png"
+            }
+        },
+        "blog": {
+            "blog_style": "grid_view",
+            "read_more_enable": true,
+            "blog_sidebar_type": "left_sidebar",
+            "blog_author_enable": true
+        },
+        "logo": {
+            "footer_logo_id": 3950,
+            "header_logo_id": 3939,
+            "favicon_icon_id": 3946,
+            "favicon_icon": {
+                "id": 3946,
+                "name": "favicon",
+                "file_name": "favicon.png",
+                "mime_type": "image/png",
+                "disk": "public",
+                "created_by_id": "1",
+                "created_at": "2025-06-25T10:28:25.000000Z",
+                "asset_url": "/storage/3946/favicon.png",
+                "original_url": "assets/images/settings/favicon.png"
+            },
+            "header_logo": {
+                "id": 3939,
+                "name": "logo (1)",
+                "file_name": "logo-(1).png",
+                "mime_type": "image/png",
+                "disk": "public",
+                "created_by_id": "1",
+                "created_at": "2025-06-25T10:19:57.000000Z",
+                "asset_url": "/storage/3939/logo-(1).png",
+                "original_url": "assets/images/settings/logo-dark.png"
+            },
+            "footer_logo": {
+                "id": 3950,
+                "name": "f6",
+                "file_name": "f6.png",
+                "mime_type": "image/png",
+                "disk": "public",
+                "created_by_id": "1",
+                "created_at": "2025-06-25T11:42:51.000000Z",
+                "asset_url": "/storage/3950/f6.png",
+                "original_url": "assets/images/settings/footer-logo.png"
+            }
+        },
+        "footer": {
+            "title": "KNOW IT ALL FIRST!",
+            "twitter": "https://twitter.com/aura",
+            "bg_color": "#212121",
+            "bg_image": "/images/footer/business.jpg",
+            "facebook": "https://facebook.com/aura",
+            "instagram": "https://instagram.com/aura",
+            "pinterest": "https://pinterest.com/aura",
+            "sub_title": "New arrivals & exclusive jewellery offers at AURA JEWELLERY",
+            "about_email": "support@aura.com",
+            "help_center": [
+                {
+                    "id": 1,
+                    "name": "My Account",
+                    "value": "account/dashboard"
+                },
+                {
+                    "id": 2,
+                    "name": "My Orders",
+                    "value": "account/order"
+                },
+                {
+                    "id": 4,
+                    "name": "Wishlist",
+                    "value": "wishlist"
+                },
+                {
+                    "id": 6,
+                    "name": "FAQ's",
+                    "value": "faq"
+                },
+                {
+                    "id": 7,
+                    "name": "Contact Us",
+                    "value": "contact-us"
+                }
+            ],
+            "useful_link": [
+                {
+                    "id": 1,
+                    "name": "Home",
+                    "value": ""
+                },
+                {
+                    "id": 2,
+                    "name": "Shopping",
+                    "value": "collections"
+                },
+                {
+                    "id": 3,
+                    "name": "About Us",
+                    "value": "about-us"
+                },
+                {
+                    "id": 4,
+                    "name": "Blogs",
+                    "value": "blogs"
+                },
+                {
+                    "id": 5,
+                    "name": "Offers",
+                    "value": "offers"
+                },
+                {
+                    "id": 6,
+                    "name": "Search",
+                    "value": "search"
+                }
+            ],
+            "footer_about": "AURA Jewellery offers a seamless online shopping and billing experience, helping customers browse exquisite jewellery collections, place orders, and manage transactions with ease.",
+            "footer_style": "footer_three",
+            "about_address": "AURA Platform, Customer Experience Center, India",
+            "app_store_url": "https://www.apple.com/in/app-store/",
+            "support_email": "support@aura.com",
+            "play_store_url": "https://play.google.com/store/apps",
+            "support_number": "+91-90000-00000",
+            "footer_copyright": true,
+            "copyright_content": "© 2026 Designed and Developed by AlphaPi Systems",
+            "footer_categories": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+            ],
+            "social_media_enable": true,
+            "payment_option_image_url": "/images/theme/data/payments.png"
+        },
+        "header": {
+            "today_deals": [],
+            "category_ids": [
+                7,
+                1,
+                9,
+                7
+            ],
+            "header_options": "header_one",
+            "support_number": "985 - 767 - 8979",
+            "top_bar_content": [
+                {
+                    "content": "<i class=\"ri-truck-line\"></i> Free Shipping on Orders $100+"
+                },
+                {
+                    "content": "<i class=\"ri-megaphone-line\"></i> Buy One Get Two Free"
+                },
+                {
+                    "content": "<i class=\"ri-gift-line\"></i> Gift Jewellery for Every Season"
+                }
+            ],
+            "page_top_bar_enable": true,
+            "sticky_header_enable": true
+        },
+        "seller": {
+            "about": {
+                "title": "Grow Your Jewellery Business with AURA & Serve Customers Effortlessly",
+                "status": true,
+                "image_url": "/images/placeholder/seller/seller_banner.png",
+                "description": "AURA is designed to simplify billing, ordering, and customer management for modern jewellery businesses.\n\nWith a secure and intuitive platform, jewellery businesses can manage product listings, process orders, handle payments, and track transactions with ease. AURA helps streamline daily operations while delivering a smooth and reliable experience for customers.\n\nWhether you are a boutique jewellery shop or a growing jewellery enterprise, AURA empowers you with the tools needed to operate efficiently, reduce manual effort, and focus on what matters most — showcasing your finest pieces and growing your business."
+            },
+            "steps": {
+                "title": "Running Your Jewellery Business with AURA Is Simple",
+                "status": true,
+                "step_1": {
+                    "title": "List Jewellery & Configure Billing",
+                    "description": "Create your jewellery business profile and add products with pricing, weight, purity, and tax details. AURA helps you manage jewellery catalogs, billing rules, and documentation easily from a single platform."
+                },
+                "step_2": {
+                    "title": "Accept Orders & Manage Transactions",
+                    "description": "Customers can browse and place orders for rings, necklaces, bracelets, and more through the AURA Portal while you manage orders, invoices, and payments securely using the AURA dashboard."
+                },
+                "step_3": {
+                    "title": "Track Payments & Grow Your Jewellery Business",
+                    "description": "Monitor payments, invoices, and transaction history in real time. Gain insights into sales performance and grow your jewellery business with streamlined operations."
+                }
+            },
+            "services": {
+                "title": "WHY CHOOSE AURA FOR JEWELLERY?",
+                "status": true,
+                "service_1": {
+                    "title": "Low Operating Cost",
+                    "image_url": "/images/placeholder/seller/seller_service1.png",
+                    "description": "AURA helps reduce operational overhead by simplifying jewellery billing, invoicing, and order management through a single unified platform."
+                },
+                "service_2": {
+                    "title": "Scalable Business Growth",
+                    "image_url": "/images/placeholder/seller/seller_service2.png",
+                    "description": "Handle increasing jewellery orders and customers effortlessly with a platform designed to scale as your business grows."
+                },
+                "service_3": {
+                    "title": "Centralized Order & Payment Management",
+                    "image_url": "/images/placeholder/seller/seller_service3.png",
+                    "description": "Manage jewellery orders, invoices, and payments from one dashboard, ensuring accuracy, transparency, and faster processing."
+                },
+                "service_4": {
+                    "title": "Easy to Use & Reliable",
+                    "image_url": "/images/placeholder/seller/seller_service4.png",
+                    "description": "AURA offers a clean, intuitive interface that makes daily jewellery business operations simple for teams of any size."
+                }
+            },
+            "start_selling": {
+                "title": "Get Started with AURA Jewellery",
+                "status": true,
+                "description": "AURA is a modern eCommerce and billing platform built to help jewellery businesses manage orders, payments, and customer transactions with ease. Whether you are a jewellery retailer, wholesaler, or artisan designer, AURA enables you to digitize your sales process with minimal setup.\n\nWith a secure and intuitive system, businesses can manage jewellery catalogs, generate invoices, track payments, and access transaction history through a single platform. Getting started with AURA is simple — register your jewellery business, configure your products and billing details, and begin serving customers efficiently."
+            }
+        },
+        "general": {
+            "mode": "light",
+            "taglines": [
+                "",
+                ""
+            ],
+            "cart_style": "cart_sidebar",
+            "site_title": "AURA | Smart eCommerce",
+            "site_tagline": "",
+            "primary_color": "#ec8951",
+            "secondary_color": null,
+            "back_to_top_enable": true,
+            "celebration_effect": false,
+            "language_direction": "ltr",
+            "exit_tagline_enable": true,
+            "seller_register_url": "https://AURA.com"
+        },
+        "product": {
+            "services": {
+                "banners": [
+                    {
+                        "title": "Certified Jewellery",
+                        "status": true,
+                        "image_url": "/images/theme/fashion_one/service1.png",
+                        "description": "Authentic and certified jewellery for every occasion"
+                    },
+                    {
+                        "title": "24 X 7 Support",
+                        "status": true,
+                        "image_url": "/images/theme/fashion_one/service2.png",
+                        "description": "Customer support available round the clock"
+                    },
+                    {
+                        "title": "Easy Payments",
+                        "status": true,
+                        "image_url": "/images/theme/fashion_one/service3.png",
+                        "description": "Smooth checkout with multiple secure payment options"
+                    }
+                ]
+            },
+            "social_share": true,
+            "image_variant": "image_thumbnail",
+            "safe_checkout": true,
+            "encourage_view": true,
+            "product_layout": "product_column_thumbnail",
+            "sticky_product": true,
+            "encourage_order": true,
+            "secure_checkout": true,
+            "sticky_checkout": true,
+            "banner_image_url": null,
+            "is_trending_product": true,
+            "product_box_variant": "product_box_two",
+            "safe_checkout_image": "/images/theme/data/payments.png",
+            "shipping_and_return": "<p>Order processing, billing, and transaction management are core to the AURA Jewellery experience. Our platform ensures that every jewellery order is handled securely, transparently, and efficiently.</p><p><strong>Order & Billing Commitment:</strong></p><ul><li><p>Accurate invoice generation for every jewellery order including weight, purity, and making charges.</p></li><li><p>Secure payment processing with real-time transaction tracking.</p></li><li><p>Clear order summaries and billing history for customers.</p></li></ul><p><strong>Returns & Adjustments:</strong></p><ul><li><p>Easy order adjustments and cancellations based on business policies.</p></li><li><p>Transparent refund and adjustment handling for jewellery purchases.</p></li><li><p>Quick updates reflected in billing and order records.</p></li></ul><p>AURA is designed to give jewellery customers confidence and clarity throughout the entire order and billing journey.</p>",
+            "secure_checkout_image": "/images/theme/data/payments.png",
+            "encourage_max_view_count": 5,
+            "encourage_max_order_count": 50
+        },
+        "about_us": {
+            "team": {
+                "title": "Our Team",
+                "status": true,
+                "sub_title": "Meet the People Behind Our Jewellery Store",
+                "members": [
+                    {
+                        "name": "Sophia Mathews",
+                        "twitter": "#",
+                        "facebook": "#",
+                        "instagram": "#",
+                        "pinterest": "#",
+                        "designation": "Founder & Managing Director",
+                        "profile_image_url": "/images/placeholder/about-us/member1.png"
+                    },
+                    {
+                        "name": "Arjun Kapoor",
+                        "twitter": "#",
+                        "facebook": "#",
+                        "instagram": "#",
+                        "pinterest": "#",
+                        "designation": "Operations Manager",
+                        "profile_image_url": "/images/placeholder/about-us/member2.png"
+                    },
+                    {
+                        "name": "Nisha Verma",
+                        "twitter": "#",
+                        "facebook": "#",
+                        "instagram": "#",
+                        "pinterest": "#",
+                        "designation": "Jewellery Product Manager",
+                        "profile_image_url": "/images/placeholder/about-us/member3.png"
+                    },
+                    {
+                        "name": "Rohan Desai",
+                        "twitter": "#",
+                        "facebook": "#",
+                        "instagram": "#",
+                        "pinterest": "#",
+                        "designation": "Customer Experience Lead",
+                        "profile_image_url": "/images/placeholder/about-us/member4.png"
+                    }
+                ]
+            },
+            "about": {
+                "title": "Your Trusted Online Jewellery Store",
+                "status": true,
+                "futures": [
+                    {
+                        "icon": "/images/theme/fashion_one/service1.png",
+                        "title": "Certified & Authentic Jewellery",
+                        "description": "Shop hallmark-certified gold, silver, diamond, and gemstone jewellery with guaranteed purity."
+                    },
+                    {
+                        "icon": "/images/theme/fashion_one/service2.png",
+                        "title": "Best Prices & Exclusive Offers",
+                        "description": "Enjoy competitive pricing with exciting discounts on rings, necklaces, bangles, and more."
+                    },
+                    {
+                        "icon": "/images/theme/fashion_one/service3.png",
+                        "title": "Secure Packaging & Fast Delivery",
+                        "description": "Premium gift-wrapped delivery with tamper-proof packaging and insured shipping for every order."
+                    }
+                ],
+                "description": "We are an online jewellery platform dedicated to delivering authentic, high-quality pieces crafted for every occasion. From elegant gold rings and diamond necklaces to silver bangles, gemstone earrings, and bridal sets, we bring the finest jewellery under one roof.\n\nOur mission is to make jewellery shopping simple, trustworthy, and convenient. With certified products, secure payments, insured delivery, and responsive customer support, we ensure a premium shopping experience every time.",
+                "content_bg_image_url": "/images/placeholder/about-us/about_banner.png",
+                "content_left_image_url": null,
+                "content_right_image_url": null
+            },
+            "testimonial": {
+                "title": "Customer Reviews",
+                "status": true,
+                "sub_title": "What Our Jewellery Shoppers Are Saying",
+                "reviews": [
+                    {
+                        "name": "Priya S.",
+                        "title": "Verified Buyer",
+                        "review": "\"The gold necklace I ordered was beautifully crafted and packed. Delivery was quick and the jewellery was exactly as shown!\"",
+                        "designation": "Regular Jewellery Shopper",
+                        "profile_image_url": "/images/placeholder/about-us/testimonial1.png"
+                    },
+                    {
+                        "name": "Rahul K.",
+                        "title": "Happy Customer",
+                        "review": "\"Best prices on diamond rings. The quality and finish were excellent. Highly recommended for gifting!\"",
+                        "designation": "Monthly Buyer",
+                        "profile_image_url": "/images/placeholder/about-us/testimonial2.png"
+                    },
+                    {
+                        "name": "Anita M.",
+                        "title": "First-Time Buyer",
+                        "review": "\"Very convenient jewellery shopping experience. Easy payment options and the piece arrived in a lovely gift box.\"",
+                        "designation": "New Customer",
+                        "profile_image_url": "/images/placeholder/about-us/testimonial3.png"
+                    }
+                ]
+            }
+        },
+        "collection": {
+            "collection_layout": "collection_category_slider",
+            "collection_categories_ids": [
+                74,
+                41,
+                107,
+                12,
+                7,
+                28,
+                157,
+                136,
+                118,
+                79,
+                70,
+                64
+            ],
+            "collection_banner_image_url": "/images/placeholder/collection_banner.png"
+        },
+        "contact_us": {
+            "title": "Contact AURA Jewellery Support",
+            "detail_1": {
+                "icon": "ri-phone-fill",
+                "text": "+91 98765 43210",
+                "label": "Customer Support"
+            },
+            "detail_2": {
+                "icon": "ri-map-pin-fill",
+                "text": "AURA Jewellery Store, Bengaluru, India",
+                "label": "Store Address"
+            },
+            "detail_3": {
+                "icon": "ri-mail-fill",
+                "text": "support@AURA.in",
+                "label": "Email Support"
+            },
+            "detail_4": {
+                "icon": "ri-cellphone-fill",
+                "text": "+91 98765 43211",
+                "label": "Order Helpline"
+            },
+            "imageUrl": null,
+            "description": "Have questions about your jewellery orders or deliveries? The AURA support team is here to help with order tracking, product inquiries, payments, and returns. We aim to make your jewellery shopping experience luxurious, easy, and reliable."
+        },
+        "error_page": {
+            "back_button_text": "Back to Dashboard",
+            "back_button_enable": true,
+            "error_page_content": "Page not found"
+        }
+    }
+}

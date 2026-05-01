@@ -1,0 +1,40 @@
+.subscribe-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.subscribe-form .form-group {
+  flex: 1;   /* input takes available space */
+  margin: 0; /* remove mx-sm-3 effect */
+}
+
+.subscribe-form input {
+  width: 100%;
+  height: 48px;
+}
+
+.subscribe-form app-button,
+.subscribe-form button {
+  height: 48px;
+  white-space: nowrap;
+  padding: 0 20px;
+}
+
+.subscribe-form .form-group {
+  position: relative;
+  flex: 1;
+}
+
+.subscribe-form .invalid-feedback {
+  position: absolute;
+  bottom: -18px; /* pushes error below without affecting height */
+  left: 0;
+  font-size: 12px;
+  margin: 0;
+}
+
+.subscribe-form input,
+.subscribe-form button {
+  height: 48px;
+}

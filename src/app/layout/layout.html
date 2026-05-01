@@ -1,0 +1,48 @@
+<!-- Top Progress Loader -->
+<ngx-loading-bar class="loader-bg" [includeSpinner]="true" [height]="'3px'"></ngx-loading-bar>
+
+<!-- Main Loader -->
+@if(themeOptionService.preloader){
+  <app-loader />
+}
+
+<!-- ✅ HEADER (always visible) -->
+<app-header [logo]="setLogo().header_logo"></app-header>
+
+<!-- ✅ PAGE CONTENT -->
+<router-outlet></router-outlet>
+
+<!-- ✅ FOOTER (always visible) -->
+<app-footer [logo]="setLogo().footer_logo"></app-footer>
+
+<!-- OPTIONAL FEATURES (keep clean UI) -->
+
+<!-- Recent Purchase (optional) -->
+<!-- 
+@if ((themeOption$ | async)?.product?.sticky_product) {
+  <app-recent-purchase-popup />
+}
+-->
+
+<!-- Back to Top + Compare (optional) -->
+<!--
+<div class="compare-tap-top-box">
+  <app-sticky-compare />
+
+  @if((themeOption$ | async)?.general?.back_to_top_enable && show){
+    <app-back-to-top />
+  }
+</div>
+-->
+
+<!-- Newsletter (optional) -->
+@if((themeOption$ | async)?.popup?.news_letter?.is_enable){
+  <!-- <app-newsletter-modal #newsletterModal /> -->
+}
+
+<!-- Exit Modal -->
+@if(!themeOptionService.newsletterModal && exit && (themeOption$ | async)?.popup?.exit?.is_enable){
+  <app-exit-modal #exitModal />
+}
+
+<app-voice-assistant />

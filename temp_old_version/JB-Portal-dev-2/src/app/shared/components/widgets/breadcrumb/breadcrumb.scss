@@ -1,0 +1,40 @@
+.breadcrumb-banner {
+  background-size: cover;
+  background-position: center;
+  padding: 35px 0;
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
+
+.breadcrumb-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+}
+
+.breadcrumb-banner .container {
+  position: relative;
+  z-index: 2;
+}
+
+.breadcrumb-banner h2 {
+  color: #000;        /* black title */
+  font-weight: 400;   /* normal weight */
+  font-size: 32px;
+}
+
+.theme-breadcrumb .breadcrumb-item {
+  color: #000;        /* black breadcrumb text */
+  font-weight: 400;   /* normal */
+  font-size: 14px;
+}
+
+.theme-breadcrumb .breadcrumb-item a {
+  color: #000;        /* home link black */
+}
+
+.theme-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  color: #000;        /* slash / color */
+}

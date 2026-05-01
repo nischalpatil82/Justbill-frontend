@@ -1,0 +1,23 @@
+.currency-static {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+
+  color: #ffffff;
+  cursor: default;
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+               'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.currency-icon {
+  font-size: 12px;
+}
+
+.currency-text {
+  letter-spacing: 0.4px;
+}

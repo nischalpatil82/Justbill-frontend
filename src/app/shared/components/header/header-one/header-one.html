@@ -1,0 +1,64 @@
+<header
+  [class]="!(stick && sticky()) ? class()! : ''"
+  [ngClass]="stick && sticky() ? 'sticky fixed' : ''"
+>
+  @if(data()?.header?.page_top_bar_enable){
+  <app-top-bar [data]="data()" />
+  }
+
+  <div class="metro">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="main-menu">
+
+            <!-- LEFT -->
+            <div class="menu-left">
+              <div class="toggle-nav" (click)="mainMenuOpen()">
+                <i class="ri-menu-line sidebar-bar"></i>
+              </div>
+
+              <div class="brand-logo">
+                <app-header-logo [logo]="logo()" />
+              </div>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="menu-right pull-right">
+
+              <!-- MENU -->
+              <div>
+                <app-menu />
+              </div>
+
+              <!-- ICONS -->
+              <div>
+                <div class="icon-nav">
+                  <ul>
+
+                    <!-- ✅ ONLY KEEP WHAT YOU WANT -->
+
+                    <!-- Wishlist -->
+                    <li class="onhover-div">
+                      <a (click)="reDirectWishlist()">
+                        <i class="ri-heart-line"></i>
+                      </a>
+                    </li>
+
+                    <!-- Cart -->
+                    <li class="onhover-div">
+                      <app-cart />
+                    </li>
+
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

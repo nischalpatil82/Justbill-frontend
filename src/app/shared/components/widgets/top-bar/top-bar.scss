@@ -1,0 +1,44 @@
+.top-header a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 400;   /* remove bold */
+}
+
+.top-header li {
+  color: #fff;
+}
+
+.top-header i {
+  color: #fff;
+}
+
+.top-header a:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .top-header {
+    text-align: center;
+    font-size: 12px;
+  }
+
+  .top-header ul {
+    justify-content: center !important;
+  }
+
+  .top-header li,
+  .top-header a,
+  .top-header i {
+    color: #fff;   /* ensure white in mobile */
+  }
+}
+
+.top-header {
+  background-color: var(--theme-color) !important;
+  color: #fff;
+}
+
+.top-header a,
+.top-header i {
+  color: #fff !important;
+}

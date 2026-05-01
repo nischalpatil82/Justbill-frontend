@@ -1,0 +1,42 @@
+{
+    "current_page": 22,
+    "data": [
+       
+        {
+            "id": 22,
+            "name": "Vegetables 4",
+            "slug": "vegetables_four",
+            "image": "/images/themes/vegetable-4.png",
+            "status": 1,
+            "created_at": "2025-06-20T07:06:59.000000Z",
+            "updated_at": "2025-07-09T07:54:27.000000Z"
+        }
+    ],
+    "first_page_url": "",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "",
+    "links": [
+        {
+            "url": null,
+            "label": "&laquo; Previous",
+            "active": false
+        },
+        {
+            "url": "",
+            "label": "1",
+            "active": true
+        },
+        {
+            "url": null,
+            "label": "Next &raquo;",
+            "active": false
+        }
+    ],
+    "next_page_url": null,
+    "path": "",
+    "per_page": 51,
+    "prev_page_url": null,
+    "to": 51,
+    "total": 51
+}

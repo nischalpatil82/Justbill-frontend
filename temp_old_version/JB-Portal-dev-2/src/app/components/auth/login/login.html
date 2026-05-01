@@ -1,0 +1,98 @@
+<!-- ✅ LUXURY EDITORIAL LOGIN -->
+<section class="auth-page luxury-editorial-layout">
+  <div class="outer-card-border">
+    <div class="luxury-split-card">
+      
+      <!-- FORM SECTION (Left) -->
+      <div class="form-section">
+        <div class="inner-form-panel">
+          <div class="header-content text-center mb-5">
+            <h1 class="editorial-title">WELCOME BACK</h1>
+            <p class="editorial-subtext">Access your curated jewellery collection</p>
+          </div>
+
+          @if (loginForm) {
+          <form
+            class="auth-form-box"
+            [formGroup]="loginForm"
+            (ngSubmit)="submit()"
+          >
+            <!-- USERNAME -->
+            <div class="luxury-field-group mb-4">
+              <label class="luxury-label">Username</label>
+              <div class="input-wrapper">
+                <input type="text" class="luxury-input" placeholder="Enter your username" formControlName="username" />
+              </div>
+              @if (loginForm.controls['username'].touched && loginForm.controls['username'].errors?.['required']) {
+              <span class="luxury-form-error">Username is required</span>
+              }
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="luxury-field-group mb-4">
+              <label class="luxury-label">Password</label>
+              <div class="input-wrapper relative-wrapper">
+                <input
+                  [type]="showPassword ? 'text' : 'password'"
+                  class="luxury-input"
+                  placeholder="Enter your password"
+                  formControlName="password"
+                />
+                <button type="button" class="eye-toggle" (click)="togglePasswordVisibility()">
+                  <i [class]="showPassword ? 'ri-eye-off-line' : 'ri-eye-line'"></i>
+                </button>
+              </div>
+              @if (loginForm.controls['password'].touched && loginForm.controls['password'].errors?.['required']) {
+              <span class="luxury-form-error">Password is required</span>
+              }
+            </div>
+
+            <!-- REMEMBER & FORGOT -->
+            <div class="d-flex justify-content-between align-items-center mb-5 luxury-options">
+              <div class="form-check luxury-checkbox">
+                <input class="form-check-input" type="checkbox" id="rememberMe" formControlName="rememberMe">
+                <label class="form-check-label" for="rememberMe">Remember me</label>
+              </div>
+              <a (click)="goToForgotPassword()" class="luxury-forgot-link">Forgot Password?</a>
+            </div>
+
+            <!-- LOGIN ERROR -->
+            @if (loginError) {
+            <div class="text-center mb-4">
+              <span class="luxury-form-error prominent">{{ loginError }}</span>
+            </div>
+            }
+
+            <!-- SUBMIT -->
+            <app-button
+              [class]="'btn luxury-cta-btn w-100'"
+              [type]="'submit'"
+              [id]="'login_btn'"
+              [spinner]="true"
+            >
+              SIGN IN
+            </app-button>
+          </form>
+
+          <p class="editorial-register text-center mt-5">
+            Don't have an account?
+            <a (click)="goToRegister()" class="register-link-action">Create Account</a>
+          </p>
+          }
+        </div>
+      </div>
+
+      <!-- IMAGE SECTION (Right) -->
+      <div class="image-section d-none d-lg-block">
+        <div class="editorial-image-wrapper">
+          <img src="assets/images/luxury-jewelry-login.png" alt="Luxury Jewellery" class="editorial-hero-img">
+          <div class="image-overlay-branding">
+            <span class="overlay-brand-name">VELORIA</span>
+            <p class="overlay-quote">“Where elegance meets identity”</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
