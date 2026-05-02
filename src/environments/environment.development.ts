@@ -1,10 +1,10 @@
 
 export const environment = {
   production: false,
-  baseURL: 'http://localhost:4200', // This represents the base URL for running our frontend project.
-  URL: 'http://localhost:4200/assets/data', // Change only the domain part, keeping "/api" intact
-  storageURL: 'http://localhost:4200/assets', // Change only the laravel primary domain
-  aiApiURL: 'http://localhost:5006',
+  baseURL: '', // Use relative path so the same build works in Netlify and local environments.
+  URL: '/assets/data', // Serve static JSON from bundled assets.
+  storageURL: '/assets', // Serve static media from bundled assets.
+  aiApiURL: 'https://13.51.255.22',
 };
 
 
