@@ -55,7 +55,7 @@ export class VoiceAssistant implements OnInit, OnDestroy {
   inputText   = '';
   messages: ChatMessage[] = [];
 
-  private apiBase = (environment.aiApiURL || 'http://13.51.255.22').replace(/\/+$/, '');
+  private apiBase = (environment.aiApiURL || 'https://13.51.255.22').replace(/\/+$/, '');
 
   private recognition: any = null;
   private sessionId: string = '';
@@ -249,10 +249,14 @@ export class VoiceAssistant implements OnInit, OnDestroy {
 
     if (isPlatformBrowser(this.platformId)) {
       const host = window.location.hostname;
-      if (host) candidates.push(`http://${host}:5004`);
+      const protocol = window.location.protocol;
+      // Only try host:5004 for local development, never on hosted domains.
+      if (host === 'localhost' || host === '127.0.0.1') {
+        candidates.push(`${protocol}//${host}:5004`);
+      }
     }
 
-    candidates.push('http://13.51.255.22');
+    candidates.push('https://13.51.255.22');
 
     return Array.from(
       new Set(candidates.map(url => (url || '').replace(/\/+$/, '')).filter(Boolean)),
