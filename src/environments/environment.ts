@@ -5,7 +5,7 @@ export const environment = {
   baseURL: '',
   URL: '/assets/data',
   storageURL: '/assets',
-  aiApiURL: 'http://13.51.255.22',
+  aiApiURL: 'https://13.51.255.22',
 };
 
 
