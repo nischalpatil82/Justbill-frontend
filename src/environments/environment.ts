@@ -1,9 +1,10 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 export const environment = {
   production: true,
-  baseURL: 'http://127.0.0.1:4200', // Changed localhost -> 127.0.0.1
-  URL: 'http://127.0.0.1:4200/assets/data', // Changed localhost -> 127.0.0.1
-  storageURL: 'http://127.0.0.1:4200/assets', // Changed localhost -> 127.0.0.1
+  // Use relative paths so the same build works on Netlify and local environments.
+  baseURL: '',
+  URL: '/assets/data',
+  storageURL: '/assets',
   aiApiURL: 'http://13.51.255.22',
 };
 
