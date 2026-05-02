@@ -28,19 +28,28 @@ function proxyRequest(event, targetPath, options = {}) {
     headers['content-length'] = String(bodyBuffer.length);
   }
 
+  // Command endpoint needs longer timeout for ML processing
+  const timeoutMs = (targetPath === '/command' || targetPath === '/voice-command') 
+    ? (options.timeoutMs || 60000)
+    : (options.timeoutMs || 20000);
+
   return new Promise((resolve) => {
+    let isResolved = false;
+    
     const request = https.request(
       outboundUrl,
       {
         method: event.httpMethod,
         headers,
         rejectUnauthorized: false,
-        timeout: options.timeoutMs || 20000,
+        timeout: timeoutMs,
       },
       (response) => {
         const chunks = [];
         response.on('data', (chunk) => chunks.push(Buffer.from(chunk)));
         response.on('end', () => {
+          if (isResolved) return;
+          isResolved = true;
           const responseBuffer = Buffer.concat(chunks);
           resolve({
             statusCode: response.statusCode || 502,
@@ -55,7 +64,20 @@ function proxyRequest(event, targetPath, options = {}) {
       },
     );
 
+    request.on('timeout', () => {
+      if (isResolved) return;
+      isResolved = true;
+      request.destroy();
+      resolve({
+        statusCode: 504,
+        headers: { 'content-type': 'application/json', 'cache-control': 'no-store' },
+        body: JSON.stringify({ error: 'AI service timeout', detail: `Request exceeded ${timeoutMs}ms` }),
+      });
+    });
+
     request.on('error', (error) => {
+      if (isResolved) return;
+      isResolved = true;
       resolve({
         statusCode: 502,
         headers: { 'content-type': 'application/json', 'cache-control': 'no-store' },
