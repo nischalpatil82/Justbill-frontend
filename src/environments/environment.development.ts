@@ -4,7 +4,7 @@ export const environment = {
   baseURL: '', // Use relative path so the same build works in Netlify and local environments.
   URL: '/assets/data', // Serve static JSON from bundled assets.
   storageURL: '/assets', // Serve static media from bundled assets.
-  aiApiURL: 'https://13.51.255.22',
+  aiApiURL: 'http://127.0.0.1:5004',
 };
 
 

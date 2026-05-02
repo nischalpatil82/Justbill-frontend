@@ -193,7 +193,7 @@ export class VoiceAssistant implements OnInit, OnDestroy {
       if (!recovered) {
         this.isLoading = false;
         this.addBot(
-          `⚠️ Server is offline.\n\nRun:\npython server.py --project justbill\n\nKeep that window open, then try again.`,
+          `⚠️ AI service is not reachable right now.\n\nCheck the backend or proxy and try again.`,
           'ERROR'
         );
         return;
@@ -229,7 +229,7 @@ export class VoiceAssistant implements OnInit, OnDestroy {
       this.isLoading = false;
       this.isOnline  = false;
       this.addBot(
-        `⚠️ Lost connection to server.\n\nMake sure the terminal is still running:\npython server.py --project justbill`,
+        `⚠️ Lost connection to AI service.\n\nPlease try again in a moment.`,
         'ERROR'
       );
     }
@@ -784,7 +784,7 @@ export class VoiceAssistant implements OnInit, OnDestroy {
       this.isLoading = false;
       this.isOnline = false;
       this.addBot(
-        `⚠️ Lost connection to server.\n\nMake sure the backend is running:\npython server.py --project justbill`,
+        `⚠️ Lost connection to AI service.\n\nPlease try again in a moment.`,
         'ERROR'
       );
     }
