@@ -2,5 +2,8 @@
   publish = "dist/multikart-frontend/browser"
   command = "npm run build"
 
+[build.environment]
+  VOICE_AGENT_BACKEND_URL = "https://13.51.255.22"
+
 [functions]
   directory = "netlify/functions"
