@@ -1,3 +1,4 @@
+const http = require('node:http');
 const https = require('node:https');
 const { URL } = require('node:url');
 
@@ -31,19 +32,26 @@ function proxyRequest(event, targetPath, options = {}) {
   // Command endpoint needs longer timeout for ML processing
   const timeoutMs = (targetPath === '/command' || targetPath === '/voice-command') 
     ? (options.timeoutMs || 60000)
+    : (targetPath === '/command-async' || targetPath.startsWith('/command-result'))
+      ? (options.timeoutMs || 10000)
     : (options.timeoutMs || 20000);
+
+  const client = baseUrl.protocol === 'http:' ? http : https;
+  const requestOptions = {
+    method: event.httpMethod,
+    headers,
+    timeout: timeoutMs,
+  };
+  if (client === https) {
+    requestOptions.rejectUnauthorized = false;
+  }
 
   return new Promise((resolve) => {
     let isResolved = false;
     
-    const request = https.request(
+    const request = client.request(
       outboundUrl,
-      {
-        method: event.httpMethod,
-        headers,
-        rejectUnauthorized: false,
-        timeout: timeoutMs,
-      },
+      requestOptions,
       (response) => {
         const chunks = [];
         response.on('data', (chunk) => chunks.push(Buffer.from(chunk)));

@@ -3,7 +3,7 @@
   command = "npm run build"
 
 [build.environment]
-  VOICE_AGENT_BACKEND_URL = "https://13.51.255.22"
+  VOICE_AGENT_BACKEND_URL = "http://13.51.255.22"
 
 [functions]
   directory = "netlify/functions"

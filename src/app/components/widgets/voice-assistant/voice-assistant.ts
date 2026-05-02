@@ -55,7 +55,7 @@ export class VoiceAssistant implements OnInit, OnDestroy {
   inputText   = '';
   messages: ChatMessage[] = [];
 
-  private apiBase = (environment.aiApiURL || 'https://13.51.255.22').replace(/\/+$/, '');
+  private apiBase = (environment.aiApiURL || '/.netlify/functions').replace(/\/+$/, '');
 
   private recognition: any = null;
   private sessionId: string = '';
@@ -202,7 +202,7 @@ export class VoiceAssistant implements OnInit, OnDestroy {
 
     try {
       const frontendContext = this.buildVoiceContext();
-      const res = await this.fetchApi('/command', {
+      const res = await this.fetchApi('/command-async', {
         method:  'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -212,8 +212,8 @@ export class VoiceAssistant implements OnInit, OnDestroy {
       }, 10000);
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-      const data = await res.json();
+      const job = await res.json();
+      const data = await this.waitForCommandResult(job.job_id, 60000);
       this.isLoading = false;
 
       // Update session ID if server assigns one
@@ -233,6 +233,22 @@ export class VoiceAssistant implements OnInit, OnDestroy {
         'ERROR'
       );
     }
+  }
+
+  private async waitForCommandResult(jobId: string, timeoutMs = 60000): Promise<any> {
+    const started = Date.now();
+    while (Date.now() - started < timeoutMs) {
+      const res = await this.fetchApi(`/command-result?job_id=${encodeURIComponent(jobId)}`, {}, 10000);
+      if (res.status === 202) {
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        continue;
+      }
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const payload = await res.json();
+      if (payload.status === 'done') return payload.result || payload;
+      await new Promise(resolve => setTimeout(resolve, 2000));
+    }
+    throw new Error('Timed out waiting for AI response');
   }
 
   private async pingHealth(timeoutMs = 7000): Promise<boolean> {
@@ -255,8 +271,6 @@ export class VoiceAssistant implements OnInit, OnDestroy {
         candidates.push(`${protocol}//${host}:5004`);
       }
     }
-
-    candidates.push('https://13.51.255.22');
 
     return Array.from(
       new Set(candidates.map(url => (url || '').replace(/\/+$/, '')).filter(Boolean)),
@@ -745,14 +759,28 @@ export class VoiceAssistant implements OnInit, OnDestroy {
       form.append('page', this.router.url);
       form.append('context_json', JSON.stringify(frontendContext));
 
-      const res = await this.fetchApi('/voice-command', {
+      const transcribeRes = await this.fetchApi('/transcribe', {
         method: 'POST',
         headers: { 'X-Session-ID': this.sessionId },
         body: form,
       }, 20000);
 
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = await res.json();
+      if (!transcribeRes.ok) throw new Error(`HTTP ${transcribeRes.status}`);
+      const transcribeData = await transcribeRes.json();
+      if (!transcribeData.text) throw new Error(transcribeData.error || 'Could not understand audio.');
+
+      const commandRes = await this.fetchApi('/command-async', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Session-ID': this.sessionId,
+        },
+        body: JSON.stringify({ text: transcribeData.text, page: this.router.url, context: frontendContext }),
+      }, 10000);
+
+      if (!commandRes.ok) throw new Error(`HTTP ${commandRes.status}`);
+      const job = await commandRes.json();
+      const data = await this.waitForCommandResult(job.job_id, 60000);
 
       if (data.session_id) {
         this.sessionId = data.session_id;
