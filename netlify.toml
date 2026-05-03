@@ -66,3 +66,15 @@
   to = "http://13.51.255.22/items"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/api/voice-command-async"
+  to = "http://13.51.255.22/voice-command-async"
+  status = 200
+  force = true
+
+# Angular SPA fallback (Required for routing and deep links)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
