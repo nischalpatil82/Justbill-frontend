@@ -202,18 +202,7 @@ export class VoiceAssistant implements OnInit, OnDestroy {
 
     try {
       const frontendContext = this.buildVoiceContext();
-      const res = await this.fetchApi('/command-async', {
-        method:  'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Session-ID': this.sessionId,
-        },
-        body:    JSON.stringify({ text: msg, page: this.router.url, context: frontendContext }),
-      }, 10000);
-
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const job = await res.json();
-      const data = await this.waitForCommandResult(job.job_id, 60000);
+      const data = await this.sendCommandWithFallback(msg, frontendContext);
       this.isLoading = false;
 
       // Update session ID if server assigns one
@@ -232,6 +221,50 @@ export class VoiceAssistant implements OnInit, OnDestroy {
         `⚠️ Lost connection to AI service.\n\nPlease try again in a moment.`,
         'ERROR'
       );
+    }
+  }
+
+  private async sendCommandWithFallback(text: string, frontendContext: VoiceFrontendContext): Promise<any> {
+    try {
+      const asyncRes = await this.fetchApi('/command-async', {
+        method:  'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Session-ID': this.sessionId,
+        },
+        body:    JSON.stringify({ text, page: this.router.url, context: frontendContext }),
+      }, 10000);
+
+      if (asyncRes.ok) {
+        const job = await asyncRes.json();
+        if (job?.job_id) {
+          return await this.waitForCommandResult(job.job_id, 60000);
+        }
+      }
+
+      const directRes = await this.fetchApi('/command', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Session-ID': this.sessionId,
+        },
+        body: JSON.stringify({ text, page: this.router.url, context: frontendContext }),
+      }, 60000);
+
+      if (!directRes.ok) throw new Error(`HTTP ${directRes.status}`);
+      return await directRes.json();
+    } catch (error) {
+      const directRes = await this.fetchApi('/command', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Session-ID': this.sessionId,
+        },
+        body: JSON.stringify({ text, page: this.router.url, context: frontendContext }),
+      }, 60000);
+
+      if (!directRes.ok) throw error;
+      return await directRes.json();
     }
   }
 
@@ -769,18 +802,7 @@ export class VoiceAssistant implements OnInit, OnDestroy {
       const transcribeData = await transcribeRes.json();
       if (!transcribeData.text) throw new Error(transcribeData.error || 'Could not understand audio.');
 
-      const commandRes = await this.fetchApi('/command-async', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Session-ID': this.sessionId,
-        },
-        body: JSON.stringify({ text: transcribeData.text, page: this.router.url, context: frontendContext }),
-      }, 10000);
-
-      if (!commandRes.ok) throw new Error(`HTTP ${commandRes.status}`);
-      const job = await commandRes.json();
-      const data = await this.waitForCommandResult(job.job_id, 60000);
+      const data = await this.sendCommandWithFallback(transcribeData.text, frontendContext);
 
       if (data.session_id) {
         this.sessionId = data.session_id;
