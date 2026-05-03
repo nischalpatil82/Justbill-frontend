@@ -268,10 +268,10 @@ export class VoiceAssistant implements OnInit, OnDestroy {
     }
   }
 
-  private async waitForCommandResult(jobId: string, timeoutMs = 60000): Promise<any> {
+  private async waitForCommandResult(jobId: string, timeoutMs = 90000): Promise<any> {
     const started = Date.now();
     while (Date.now() - started < timeoutMs) {
-      const res = await this.fetchApi(`/command-result/${encodeURIComponent(jobId)}`, {}, 10000);
+      const res = await this.fetchApi(`/command-result/${encodeURIComponent(jobId)}`, {}, 15000);
       if (res.status === 202) {
         await new Promise(resolve => setTimeout(resolve, 2000));
         continue;
@@ -797,15 +797,15 @@ export class VoiceAssistant implements OnInit, OnDestroy {
         method: 'POST',
         headers: { 'X-Session-ID': this.sessionId },
         body: form,
-      }, 30000); // Wait up to 30s for the initial upload
+      }, 60000); // Wait up to 60s for the initial upload
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const job = await res.json();
       
       let data;
       if (job?.job_id) {
-        // Wait up to 60 seconds for transcription and processing to finish
-        data = await this.waitForCommandResult(job.job_id, 60000);
+        // Wait up to 90 seconds for transcription and processing to finish
+        data = await this.waitForCommandResult(job.job_id, 90000);
       } else {
         throw new Error('No job ID returned for voice command');
       }
