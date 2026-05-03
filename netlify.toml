@@ -7,3 +7,62 @@
 
 [functions]
   directory = "netlify/functions"
+
+# ── CDN-level API proxy (bypasses function 10s timeout) ──────────────
+# These redirect rules proxy API calls at Netlify's edge, which has
+# a ~30s timeout and zero cold-start overhead — much faster than
+# routing through serverless functions.
+
+[[redirects]]
+  from = "/api/health"
+  to = "http://13.51.255.22/health"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/ready"
+  to = "http://13.51.255.22/ready"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/command"
+  to = "http://13.51.255.22/command"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/command-async"
+  to = "http://13.51.255.22/command-async"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/command-result/*"
+  to = "http://13.51.255.22/command-result/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/voice-command"
+  to = "http://13.51.255.22/voice-command"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/transcribe"
+  to = "http://13.51.255.22/transcribe"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/speak"
+  to = "http://13.51.255.22/speak"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/items"
+  to = "http://13.51.255.22/items"
+  status = 200
+  force = true

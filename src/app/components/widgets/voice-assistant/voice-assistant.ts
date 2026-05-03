@@ -792,17 +792,23 @@ export class VoiceAssistant implements OnInit, OnDestroy {
       form.append('page', this.router.url);
       form.append('context_json', JSON.stringify(frontendContext));
 
-      const transcribeRes = await this.fetchApi('/transcribe', {
+      // Use async voice command to avoid Netlify proxy timeouts during transcription
+      const res = await this.fetchApi('/voice-command-async', {
         method: 'POST',
         headers: { 'X-Session-ID': this.sessionId },
         body: form,
-      }, 20000);
+      }, 30000); // Wait up to 30s for the initial upload
 
-      if (!transcribeRes.ok) throw new Error(`HTTP ${transcribeRes.status}`);
-      const transcribeData = await transcribeRes.json();
-      if (!transcribeData.text) throw new Error(transcribeData.error || 'Could not understand audio.');
-
-      const data = await this.sendCommandWithFallback(transcribeData.text, frontendContext);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const job = await res.json();
+      
+      let data;
+      if (job?.job_id) {
+        // Wait up to 60 seconds for transcription and processing to finish
+        data = await this.waitForCommandResult(job.job_id, 60000);
+      } else {
+        throw new Error('No job ID returned for voice command');
+      }
 
       if (data.session_id) {
         this.sessionId = data.session_id;
@@ -810,7 +816,6 @@ export class VoiceAssistant implements OnInit, OnDestroy {
       }
 
       if (data.text) {
-        this.inputText = data.text;
         this.addUser(data.text);
       }
 
@@ -828,15 +833,18 @@ export class VoiceAssistant implements OnInit, OnDestroy {
       }
 
       this.audioChunks = [];
-      this.isLoading = false;
+      this.zone.run(() => { this.isLoading = false; });
     } catch {
       this.audioChunks = [];
-      this.isLoading = false;
-      this.isOnline = false;
-      this.addBot(
-        `⚠️ Lost connection to AI service.\n\nPlease try again in a moment.`,
-        'ERROR'
-      );
+      this.zone.run(() => {
+        this.isLoading = false;
+        // Don't set isOnline=false for voice timeouts — text commands still work fine.
+        // Voice just needs more time due to audio upload + Whisper processing.
+        this.addBot(
+          `⚠️ Voice processing timed out.\n\nThe server may be busy. Try a shorter recording or type your command instead.`,
+          'ERROR'
+        );
+      });
     }
   }
 

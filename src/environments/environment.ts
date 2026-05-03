@@ -5,7 +5,7 @@ export const environment = {
   baseURL: '',
   URL: '/assets/data',
   storageURL: '/assets',
-  aiApiURL: '/.netlify/functions',
+  aiApiURL: '/api',
 };
 
 
