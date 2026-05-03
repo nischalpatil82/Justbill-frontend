@@ -854,9 +854,10 @@ export class VoiceAssistant implements OnInit, OnDestroy {
     if (!this.ttsEnabled) this.stopTTS();
   }
 
-  private speak(text: string) {
+  private audioPlayer: HTMLAudioElement | null = null;
+
+  private async speak(text: string) {
     if (!this.ttsEnabled || !isPlatformBrowser(this.platformId)) return;
-    if (!('speechSynthesis' in window)) return;
 
     // Don't speak system/error messages
     if (!text || text.includes('⚠️') || text.includes('python server.py')) return;
@@ -872,29 +873,54 @@ export class VoiceAssistant implements OnInit, OnDestroy {
     if (!cleaned) return;
 
     this.stopTTS();
-    const utterance = new SpeechSynthesisUtterance(cleaned);
-    utterance.lang = 'en-IN';
-    utterance.rate = 1.0;
-    utterance.pitch = 1.0;
-
-    // Try to use an Indian English voice
-    const voices = speechSynthesis.getVoices();
-    const indianVoice = voices.find(v => v.lang === 'en-IN') ||
-                        voices.find(v => v.lang.startsWith('en'));
-    if (indianVoice) utterance.voice = indianVoice;
-
-    utterance.onstart = () => { this.zone.run(() => { this.isSpeaking = true; }); };
-    utterance.onend   = () => { this.zone.run(() => { this.isSpeaking = false; }); };
-    utterance.onerror = () => { this.zone.run(() => { this.isSpeaking = false; }); };
-
-    speechSynthesis.speak(utterance);
+    
+    try {
+      this.zone.run(() => { this.isSpeaking = true; });
+      const res = await this.fetchApi('/speak', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: cleaned })
+      });
+      
+      if (!res.ok) throw new Error('TTS failed');
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      
+      this.audioPlayer = new Audio(url);
+      this.audioPlayer.onended = () => {
+        this.zone.run(() => { this.isSpeaking = false; });
+        URL.revokeObjectURL(url);
+      };
+      this.audioPlayer.onerror = () => {
+        this.zone.run(() => { this.isSpeaking = false; });
+        URL.revokeObjectURL(url);
+      };
+      
+      await this.audioPlayer.play();
+    } catch (e) {
+      console.error('Premium audio playback failed, falling back to local TTS', e);
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(cleaned);
+        utterance.onstart = () => { this.zone.run(() => { this.isSpeaking = true; }); };
+        utterance.onend   = () => { this.zone.run(() => { this.isSpeaking = false; }); };
+        utterance.onerror = () => { this.zone.run(() => { this.isSpeaking = false; }); };
+        speechSynthesis.speak(utterance);
+      } else {
+        this.zone.run(() => { this.isSpeaking = false; });
+      }
+    }
   }
 
   private stopTTS() {
+    if (this.audioPlayer) {
+      this.audioPlayer.pause();
+      this.audioPlayer.currentTime = 0;
+      this.audioPlayer = null;
+    }
     if (isPlatformBrowser(this.platformId) && 'speechSynthesis' in window) {
       speechSynthesis.cancel();
-      this.isSpeaking = false;
     }
+    this.isSpeaking = false;
   }
 
   // ── Utility ──────────────────────────────────────────────────────────────
