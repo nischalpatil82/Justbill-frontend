@@ -271,7 +271,7 @@ export class VoiceAssistant implements OnInit, OnDestroy {
   private async waitForCommandResult(jobId: string, timeoutMs = 60000): Promise<any> {
     const started = Date.now();
     while (Date.now() - started < timeoutMs) {
-      const res = await this.fetchApi(`/command-result?job_id=${encodeURIComponent(jobId)}`, {}, 10000);
+      const res = await this.fetchApi(`/command-result/${encodeURIComponent(jobId)}`, {}, 10000);
       if (res.status === 202) {
         await new Promise(resolve => setTimeout(resolve, 2000));
         continue;
